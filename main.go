@@ -44,14 +44,14 @@ func Handler(ctx context.Context, request *GatewayRequest) (*Response, error) {
 
 // ViewData ...
 type ViewData struct {
-	wallet string
-	id     string
+	ID     string
+	Wallet string
 }
 
 func tgForm(ID string) string {
 	data := ViewData{
-		id:     "TG-" + ID,
-		wallet: os.Getenv("YOO_WALLET"),
+		ID:     "TG-" + ID,
+		Wallet: os.Getenv("YOO_WALLET"),
 	}
 	t, err := template.ParseFiles("form-tg.html")
 	if err != nil {
