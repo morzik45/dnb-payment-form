@@ -1,8 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"html/template"
+	"log"
+	"os"
 )
 
 const (
@@ -24,7 +28,7 @@ func Handler(ctx context.Context, request *GatewayRequest) (*Response, error) {
 	case TG:
 		return &Response{
 			StatusCode: 200,
-			Body:       "this TG " + ID + " " + request.Path,
+			Body:       tgForm(ID),
 		}, nil
 	case DEV:
 		return &Response{
@@ -37,6 +41,25 @@ func Handler(ctx context.Context, request *GatewayRequest) (*Response, error) {
 			Body:       "null",
 		}, nil
 	}
+}
+
+// ViewData ...
+type ViewData struct {
+	wallet string
+	id     string
+}
+
+func tgForm(ID string) string {
+	data := ViewData{
+		id:     "TG-" + ID,
+		wallet: os.Getenv("YOO_WALLET"),
+	}
+	t, _ := template.ParseFiles("form-tg.html")
+	var tpl bytes.Buffer
+	if err := t.Execute(&tpl, data); err != nil {
+		log.Println(err.Error())
+	}
+	return tpl.String()
 }
 
 // GatewayRequest type....
