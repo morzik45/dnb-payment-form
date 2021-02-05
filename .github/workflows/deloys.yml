@@ -14,11 +14,11 @@ jobs:
         with:
           token: ${{ secrets.TOKEN }}
           function_id: ${{ secrets.FUNCTION_ID }}
-          runtime: 'golang114'
-          entrypoint: 'main.Handler'
-          environment: DEBUG=false,YOO_WALLET=${{ secrets.YOO_WALLET }}
-          memory: '128'
-          execution_timeout: '3'
+          runtime: "golang114"
+          entrypoint: "main.Handler"
+          environment: DEBUG=false,YOO_WALLET=${{ secrets.YOO_WALLET }},YM_SECRET=${{ secrets.YM_SECRET }}
+          memory: "128"
+          execution_timeout: "3"
           service_account: ${{ secrets.SERVICE_ACCOUNT }}
-          source: '.'
-          exclude: '.git/,.github/,/.gitignore'
+          source: "."
+          exclude: ".git/,.github/,/.gitignore"
