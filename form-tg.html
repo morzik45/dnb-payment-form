@@ -135,7 +135,7 @@
 <body>
     <div id="app">
         <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
-            <p>Telegram ID: {{id}}</p>
+            <p>Telegram ID: {{.id}}</p>
             <fieldset class="account-ps">
                 <div class="cc-selector-2">
                     <input id="card" type="radio" name="paymentType" value="AC" required />
@@ -150,9 +150,9 @@
                     <input type="number" data-suffix="₽" autofocus id="sum" name="sum" min="20" value="100" />
                 </div>
             </fieldset>
-            <input type="hidden" name="receiver" value="{{ wallet }}" />
-            <input type="hidden" name="label" value="{{ id }}" />
-            <input type="hidden" name="targets" value="ID-{{ id }}" />
+            <input type="hidden" name="receiver" value="{{ .wallet }}" />
+            <input type="hidden" name="label" value="{{ .id }}" />
+            <input type="hidden" name="targets" value="ID-{{ .id }}" />
             <input type="hidden" name="quickpay-form" value="shop" />
             <fieldset class="account-action">
                 <div>
