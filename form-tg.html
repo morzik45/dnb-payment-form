@@ -77,11 +77,11 @@
         }
 
         .card {
-            background-image: url(/static/img/clipart2061111.png);
+            background-image: url(/static/img/card.png);
         }
 
         .yandex {
-            background-image: url(https://static-eu.insales.ru/files/1/8082/7282578/original/yamoney_kv_ru.png);
+            background-image: url(/static/img/yoomoney.png);
         }
 
         .cc-selector-2 input:active+.drinkcard-cc {
@@ -134,7 +134,7 @@
 
 <body>
     <div id="app">
-        <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
+        <form method="POST" action="https://yoomoney.ru/quickpay/confirm.xml">
             <p>Telegram ID: {{.ID}}</p>
             <fieldset class="account-ps">
                 <div class="cc-selector-2">
@@ -151,7 +151,7 @@
                 </div>
             </fieldset>
             <input type="hidden" name="receiver" value="{{ .Wallet }}" />
-            <input type="hidden" name="label" value="{{ .ID }}" />
+            <input type="hidden" name="label" value="{{ .Label }}" />
             <input type="hidden" name="targets" value="ID-{{ .ID }}" />
             <input type="hidden" name="quickpay-form" value="shop" />
             <fieldset class="account-action">
