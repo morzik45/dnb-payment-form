@@ -24,12 +24,12 @@ func Handler(ctx context.Context, request *GatewayRequest) (*Response, error) {
 	case TG:
 		return &Response{
 			StatusCode: 200,
-			Body:       "this TG " + ID,
+			Body:       "this TG " + ID + " " + request.Path,
 		}, nil
 	case DEV:
 		return &Response{
 			StatusCode: 200,
-			Body:       "this DEV" + ID,
+			Body:       "this DEV" + ID + " " + request.Path,
 		}, nil
 	default:
 		return &Response{
