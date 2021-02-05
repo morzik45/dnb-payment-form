@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"log"
 	"net/url"
 	"os"
 	"strconv"
@@ -58,6 +59,7 @@ func (u *YooMoney) validate(notificationSecret string) bool {
 	h.Write([]byte(s))
 	mySha1Hash := hex.EncodeToString(h.Sum(nil))
 	if mySha1Hash != u.Sha1Hash || u.CodePro || u.Unaccepted {
+		log.Println(u.Sha1Hash, mySha1Hash, u)
 		return false
 	}
 	return true
@@ -117,6 +119,7 @@ func NewYooMoney(request models.GatewayRequest) (*YooMoney, error) {
 	}
 
 	if !update.validate(os.Getenv("YM_SECRET")) {
+		log.Println(update)
 		return nil, errors.New("not valid update")
 	}
 
