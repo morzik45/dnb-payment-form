@@ -5,7 +5,6 @@ import (
 	"context"
 	"fmt"
 	"html/template"
-	"log"
 	"os"
 )
 
@@ -54,10 +53,13 @@ func tgForm(ID string) string {
 		id:     "TG-" + ID,
 		wallet: os.Getenv("YOO_WALLET"),
 	}
-	t, _ := template.ParseFiles("form-tg.html")
+	t, err := template.ParseFiles("form-tg.html")
+	if err != nil {
+		return err.Error()
+	}
 	var tpl bytes.Buffer
 	if err := t.Execute(&tpl, data); err != nil {
-		log.Println(err.Error())
+		return err.Error()
 	}
 	return tpl.String()
 }
