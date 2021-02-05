@@ -59,7 +59,7 @@ func (u *YooMoney) validate(notificationSecret string) bool {
 	h.Write([]byte(s))
 	mySha1Hash := hex.EncodeToString(h.Sum(nil))
 	if mySha1Hash != u.Sha1Hash || u.CodePro || u.Unaccepted {
-		log.Println(u.Sha1Hash, mySha1Hash, u)
+		log.Println(u.Sha1Hash, mySha1Hash, s, u)
 		return false
 	}
 	return true
